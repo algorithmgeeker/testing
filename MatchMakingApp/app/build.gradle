@@ -1,0 +1,92 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        applicationId "com.example.matchmaking"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', 'BASE_URL', '"https://randomuser.me/api/"'
+        }
+
+        debug {
+            buildConfigField 'String', 'BASE_URL', '"https://randomuser.me/api/"'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    def room_version = "2.3.0"
+    def lifecycle_version = "2.3.1"
+
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    implementation "androidx.recyclerview:recyclerview:1.2.0"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    //RxJava2 support for Room
+    implementation "androidx.room:room-rxjava2:$room_version"
+    // RxJava2 Kotlin Support
+    implementation "io.reactivex.rxjava2:rxkotlin:2.4.0"
+    // RxJava2
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
+    // RxJava2 Android Support
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    // RetrofitAdapter
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.8.1"
+
+    // Material Design
+    implementation 'com.google.android.material:material:1.3.0'
+    // Dagger Android Support
+    implementation 'com.google.dagger:dagger-android:2.35.1'
+    kapt 'com.google.dagger:dagger-android-processor:2.35.1'
+    kapt 'com.google.dagger:dagger-compiler:2.35.1'
+    implementation 'com.google.dagger:dagger-android-support:2.27' // if you use the support libraries
+
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    // Annotation processor
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.8.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.8.1'
+
+    //Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    // okHttpLogger
+    implementation "com.squareup.okhttp3:logging-interceptor:4.4.1"
+}

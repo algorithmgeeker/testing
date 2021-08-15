@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Match Making</string>
+    <string name="welcome">Some Info: \n1. Swipe Right/Left to see next/previous matches. \n2. You can see Accepted, Decline, Pending matches.</string>
+</resources>
